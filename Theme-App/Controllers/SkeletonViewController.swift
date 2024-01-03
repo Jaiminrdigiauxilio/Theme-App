@@ -13,6 +13,8 @@ class SkeletonViewController: UIViewController {
     @IBOutlet weak var bgImgView: UIImageView!
     @IBOutlet weak var homeTable: UITableView!
     
+    var sectionTitles = ["Best Selling", "New Year", "Movies", "Traditional", "Trending", "Graphic", "Premium", "Free"]
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setBgFromUsrDefault()
@@ -61,19 +63,42 @@ extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = .clear
+        
         let title = UILabel()
-        title.text = "Wallpapers"
+        title.text = "\(sectionTitles[section]) Themes"
         title.textColor = .white
         title.translatesAutoresizingMaskIntoConstraints = false
         
-//        NSLayoutConstraint.activate([title.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 12), title.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)])
-//        headerView.addSubview(title)
+        let seeAllBtn = UIButton()
+        seeAllBtn.setTitle("See All", for: .normal)
+        seeAllBtn.addTarget(self, action: #selector(seeAllTapped), for: .touchUpInside)
+        
+        headerView.addSubview(title)
+        headerView.addSubview(seeAllBtn)
+        
+        
+        
+        NSLayoutConstraint.activate([
+            title.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 12),
+            title.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            title.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            
+//            seeAllBtn.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: 12),
+//            seeAllBtn.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+//            seeAllBtn.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+                                    
+                                    ])
+        headerView.addSubview(title)
         return headerView
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = .clear
     }
     
+    
+    @objc func seeAllTapped()  {
+        debugPrint("see all tapped!")
+    }
 }
 
 

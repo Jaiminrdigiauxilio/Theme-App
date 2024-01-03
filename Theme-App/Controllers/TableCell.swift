@@ -29,12 +29,13 @@ class TableCell: UITableViewCell{
 extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.collectionCellIdentifier, for: indexPath) as! CollectionCell
-        cell.wallpaperImg.image = UIImage(named: "bg7")
+        cell.wallpaperImg.image = UIImage(named: "bg\(indexPath.item + 1)")
+        cell.wallpaperImg.layer.cornerRadius = 25
         return cell
     }
 }
