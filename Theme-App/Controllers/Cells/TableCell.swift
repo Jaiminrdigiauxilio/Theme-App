@@ -26,7 +26,7 @@ class TableCell: UITableViewCell{
 }
 
 
-extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate {
+extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8
@@ -34,8 +34,17 @@ extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.collectionCellIdentifier, for: indexPath) as! CollectionCell
-        cell.wallpaperImg.image = UIImage(named: "bg\(indexPath.item + 1)")
+        cell.wallpaperImg.image = UIImage(named: "bg\(homeCollection.tag + 1)")
+//        cell.wallpaperImg.image
         cell.wallpaperImg.layer.cornerRadius = 25
+        
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 2
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+    
 }

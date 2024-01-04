@@ -12,6 +12,9 @@
 		3A19D0C02B45663A00F0340A /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A19D0BF2B45663A00F0340A /* TableCell.swift */; };
 		3A19D0C22B45667800F0340A /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A19D0C12B45667800F0340A /* CollectionCell.swift */; };
 		3A19D0C42B4592F700F0340A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A19D0C32B4592F700F0340A /* Theme.swift */; };
+		3A2A761C2B468C540012959E /* AllThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2A761B2B468C540012959E /* AllThemesViewController.swift */; };
+		3A2A761E2B468C970012959E /* SelectedThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2A761D2B468C970012959E /* SelectedThemeViewController.swift */; };
+		3A2A76212B469A6A0012959E /* SeeAllCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2A76202B469A6A0012959E /* SeeAllCell.swift */; };
 		3AB3A13E2B42FA5D00E5DCD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3A13D2B42FA5D00E5DCD7 /* AppDelegate.swift */; };
 		3AB3A1402B42FA5D00E5DCD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3A13F2B42FA5D00E5DCD7 /* SceneDelegate.swift */; };
 		3AB3A1422B42FA5D00E5DCD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3A1412B42FA5D00E5DCD7 /* ViewController.swift */; };
@@ -26,6 +29,9 @@
 		3A19D0BF2B45663A00F0340A /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		3A19D0C12B45667800F0340A /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		3A19D0C32B4592F700F0340A /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		3A2A761B2B468C540012959E /* AllThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllThemesViewController.swift; sourceTree = "<group>"; };
+		3A2A761D2B468C970012959E /* SelectedThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedThemeViewController.swift; sourceTree = "<group>"; };
+		3A2A76202B469A6A0012959E /* SeeAllCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllCell.swift; sourceTree = "<group>"; };
 		3AB3A13A2B42FA5D00E5DCD7 /* Theme-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Theme-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AB3A13D2B42FA5D00E5DCD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AB3A13F2B42FA5D00E5DCD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +61,16 @@
 				3A19D0BD2B45659500F0340A /* Strings.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3A2A761F2B468D440012959E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3A19D0BF2B45663A00F0340A /* TableCell.swift */,
+				3A19D0C12B45667800F0340A /* CollectionCell.swift */,
+				3A2A76202B469A6A0012959E /* SeeAllCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		3AB3A1312B42FA5D00E5DCD7 = {
@@ -108,10 +124,11 @@
 		3ADDB1B52B43DE1200FE256B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A2A761F2B468D440012959E /* Cells */,
 				3AB3A1412B42FA5D00E5DCD7 /* ViewController.swift */,
 				3ADDB1B62B43DF0C00FE256B /* SkeletonViewController.swift */,
-				3A19D0BF2B45663A00F0340A /* TableCell.swift */,
-				3A19D0C12B45667800F0340A /* CollectionCell.swift */,
+				3A2A761B2B468C540012959E /* AllThemesViewController.swift */,
+				3A2A761D2B468C970012959E /* SelectedThemeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -194,11 +211,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A19D0C02B45663A00F0340A /* TableCell.swift in Sources */,
+				3A2A76212B469A6A0012959E /* SeeAllCell.swift in Sources */,
 				3A19D0C42B4592F700F0340A /* Theme.swift in Sources */,
 				3AB3A1422B42FA5D00E5DCD7 /* ViewController.swift in Sources */,
 				3AB3A13E2B42FA5D00E5DCD7 /* AppDelegate.swift in Sources */,
 				3A19D0BE2B45659500F0340A /* Strings.swift in Sources */,
+				3A2A761C2B468C540012959E /* AllThemesViewController.swift in Sources */,
 				3A19D0C22B45667800F0340A /* CollectionCell.swift in Sources */,
+				3A2A761E2B468C970012959E /* SelectedThemeViewController.swift in Sources */,
 				3AB3A1402B42FA5D00E5DCD7 /* SceneDelegate.swift in Sources */,
 				3ADDB1B72B43DF0C00FE256B /* SkeletonViewController.swift in Sources */,
 			);
@@ -357,8 +377,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -366,6 +385,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.digiauxilio.Theme-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -384,8 +406,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -393,6 +414,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.digiauxilio.Theme-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

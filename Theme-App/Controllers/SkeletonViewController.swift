@@ -36,6 +36,7 @@ class SkeletonViewController: UIViewController {
 
 }
 
+//  MARK: - Table View code & Methods
 extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,13 +44,13 @@ extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: K.tableCellIdentifier, for: indexPath) as! TableCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.tableCellIdentifier, for: indexPath) as! TableCell
+        cell.homeCollection.tag = indexPath.section
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 230
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -61,7 +62,7 @@ extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80))
         headerView.backgroundColor = .clear
         
         let title = UILabel()
@@ -70,25 +71,33 @@ extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
         title.translatesAutoresizingMaskIntoConstraints = false
         
         let seeAllBtn = UIButton()
+        seeAllBtn.translatesAutoresizingMaskIntoConstraints = false
         seeAllBtn.setTitle("See All", for: .normal)
-        seeAllBtn.addTarget(self, action: #selector(seeAllTapped), for: .touchUpInside)
-        
+        seeAllBtn.backgroundColor = .clear
+        seeAllBtn.addTarget(self, action: #selector(seeAllTapped(sender:)), for: .touchUpInside)
+        seeAllBtn.tag = section
         headerView.addSubview(title)
         headerView.addSubview(seeAllBtn)
         
         
         
         NSLayoutConstraint.activate([
+//            headerView.widthAnchor.c
+//            title.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 5),
             title.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 12),
-            title.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            title.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            title.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -10),
+//            title.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+//            title.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
             
-//            seeAllBtn.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: 12),
+//            seeAllBtn.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 5),
+            seeAllBtn.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -12),
+            seeAllBtn.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -5),
 //            seeAllBtn.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
 //            seeAllBtn.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
                                     
                                     ])
         headerView.addSubview(title)
+        headerView.addSubview(seeAllBtn)
         return headerView
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -96,8 +105,12 @@ extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-    @objc func seeAllTapped()  {
-        debugPrint("see all tapped!")
+    @objc func seeAllTapped(sender: UIButton)  {
+        let currentSection = sender.tag
+//        debugPrint("\(sectionTitles[currentSection]) see all tapped!")
+//        performSegue(withIdentifier: K.AllThemesSegue, sender: self)
+        
+
     }
 }
 
@@ -106,7 +119,8 @@ extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
 
 
 
-// skeleton view code
+//  MARK: - skeleton view code
+
 //    func addindShimmerEffect()  {
 //
 //        let label = UILabel()
