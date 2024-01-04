@@ -11,4 +11,10 @@ class CollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var wallpaperImg: UIImageView!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        wallpaperImg.image = nil
+    }
+    
 }

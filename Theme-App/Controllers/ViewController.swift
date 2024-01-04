@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 
     
     @IBAction func getStartedTapped(_ sender: UIButton) {
-//        let themeHomeVC = SkeletonViewController()
+//        let themeHomeVC = ThemeStoreViewController()
 //        self.navigationController?.pushViewController(themeHomeVC, animated: true)
 //        debugPrint("pressed")
     }

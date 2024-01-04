@@ -21,7 +21,7 @@
 		3AB3A1452B42FA5D00E5DCD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3A1432B42FA5D00E5DCD7 /* Main.storyboard */; };
 		3AB3A1472B42FA5F00E5DCD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3A1462B42FA5F00E5DCD7 /* Assets.xcassets */; };
 		3AB3A14A2B42FA5F00E5DCD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3A1482B42FA5F00E5DCD7 /* LaunchScreen.storyboard */; };
-		3ADDB1B72B43DF0C00FE256B /* SkeletonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADDB1B62B43DF0C00FE256B /* SkeletonViewController.swift */; };
+		3ADDB1B72B43DF0C00FE256B /* ThemeStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADDB1B62B43DF0C00FE256B /* ThemeStoreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 		3AB3A1462B42FA5F00E5DCD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AB3A1492B42FA5F00E5DCD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AB3A14B2B42FA5F00E5DCD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3ADDB1B62B43DF0C00FE256B /* SkeletonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonViewController.swift; sourceTree = "<group>"; };
+		3ADDB1B62B43DF0C00FE256B /* ThemeStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStoreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +126,7 @@
 			children = (
 				3A2A761F2B468D440012959E /* Cells */,
 				3AB3A1412B42FA5D00E5DCD7 /* ViewController.swift */,
-				3ADDB1B62B43DF0C00FE256B /* SkeletonViewController.swift */,
+				3ADDB1B62B43DF0C00FE256B /* ThemeStoreViewController.swift */,
 				3A2A761B2B468C540012959E /* AllThemesViewController.swift */,
 				3A2A761D2B468C970012959E /* SelectedThemeViewController.swift */,
 			);
@@ -220,7 +220,7 @@
 				3A19D0C22B45667800F0340A /* CollectionCell.swift in Sources */,
 				3A2A761E2B468C970012959E /* SelectedThemeViewController.swift in Sources */,
 				3AB3A1402B42FA5D00E5DCD7 /* SceneDelegate.swift in Sources */,
-				3ADDB1B72B43DF0C00FE256B /* SkeletonViewController.swift in Sources */,
+				3ADDB1B72B43DF0C00FE256B /* ThemeStoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class SkeletonViewController: UIViewController {
+class ThemeStoreViewController: UIViewController {
 
     @IBOutlet weak var bgImgView: UIImageView!
     @IBOutlet weak var homeTable: UITableView!
@@ -23,7 +23,7 @@ class SkeletonViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         homeTable.sectionHeaderTopPadding = 20
-
+        navigationItem.titleView?.tintColor = .white
     }
     
     func setBgFromUsrDefault() {
@@ -37,7 +37,7 @@ class SkeletonViewController: UIViewController {
 }
 
 //  MARK: - Table View code & Methods
-extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
+extension ThemeStoreViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -56,10 +56,7 @@ extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 8
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Wallpapers"
-    }
+
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80))
@@ -79,8 +76,6 @@ extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
         headerView.addSubview(title)
         headerView.addSubview(seeAllBtn)
         
-        
-        
         NSLayoutConstraint.activate([
 //            headerView.widthAnchor.c
 //            title.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 5),
@@ -94,10 +89,11 @@ extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
             seeAllBtn.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -5),
 //            seeAllBtn.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
 //            seeAllBtn.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-                                    
-                                    ])
+        ])
+        
         headerView.addSubview(title)
         headerView.addSubview(seeAllBtn)
+        
         return headerView
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -107,8 +103,9 @@ extension SkeletonViewController: UITableViewDataSource, UITableViewDelegate {
     
     @objc func seeAllTapped(sender: UIButton)  {
         let currentSection = sender.tag
-//        debugPrint("\(sectionTitles[currentSection]) see all tapped!")
-//        performSegue(withIdentifier: K.AllThemesSegue, sender: self)
+        debugPrint("\(sectionTitles[currentSection]) see all tapped!")
+        performSegue(withIdentifier: K.AllThemesSegue, sender: self)
+//        performSegue(withIdentifier: K.tappedThemeSegue, sender: self)
         
 
     }
