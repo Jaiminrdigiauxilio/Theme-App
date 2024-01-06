@@ -10,6 +10,8 @@ import Kingfisher
 
 class TableCell: UITableViewCell{
     @IBOutlet weak var homeCollection: UICollectionView!
+    var currentIndex = 0
+    var currentSection = 0
     
     var imgUrlArr = [
         K.imgUrl1,
@@ -21,6 +23,18 @@ class TableCell: UITableViewCell{
         K.imgUrl7,
         K.imgUrl8,
     ]
+    
+    var themeColor:[UIColor] = [
+        .red,
+        .blue,
+        .purple,
+        .black,
+        .brown,
+        .green,
+        .gray,
+        .cyan,
+    ]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         homeCollection.dataSource = self
@@ -37,34 +51,81 @@ class TableCell: UITableViewCell{
 }
 
 
-extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.collectionCellIdentifier, for: indexPath) as! CollectionCell
         
-        //  kingfisher code
-        cell.wallpaperImg.image = nil
-        cell.wallpaperImg.kf.indicatorType = .activity
-        let resource = KF.ImageResource(downloadURL: URL(string: imgUrlArr[homeCollection.tag])!, cacheKey: "\(indexPath.section)")
-        let placeImg = UIImage(named: "bg1")
-        cell.wallpaperImg.kf.setImage(with: resource,placeholder: placeImg, options: [.transition(.fade(0.2))])
+        currentIndex = indexPath.item
+        currentSection = homeCollection.tag
+        
+        cell.wallpaperImg.image = UIImage(named: "placeholder")
         cell.wallpaperImg.kf.indicatorType = .activity
         cell.wallpaperImg.layer.cornerRadius = 25
         
+        // color background code
+//        cell.wallpaperImg.isHidden = true
+//        cell.contentView.backgroundColor = themeColor[homeCollection.tag]
+//        cell.contentView.layer.cornerRadius = 25
+        
+        //  kingfisher code
+        let cache = ImageCache.default
+        cache.memoryStorage.config.expiration = .seconds(600/2)
+//        let cached = cache.isCached(forKey: "img\(currentSection)\(currentIndex)")
+        let cached = cache.isCached(forKey: "img\(currentSection)")
+        if(cached) {
+            
+            cache.retrieveImageInDiskCache(forKey: "img\(currentSection)") { result in
+                switch result {
+                    //  IF IMAGE IS PRESENT IN CACHE
+                case .success(let value):
+                    print("cashed")
+                    DispatchQueue.main.async {
+                        cell.wallpaperImg.image = value
+                    }
+                    //  IF error occured
+                case .failure(let error):
+                    print("failed to retrice image form cache")
+                    
+                }
+            }
+            //  IF IMAGE IS NOT PRESENT IN CACHE
+        } else {
+            cell.wallpaperImg.kf.indicatorType = .activity
+            let resource = KF.ImageResource(downloadURL: URL(string: imgUrlArr[homeCollection.tag])!, cacheKey: "img\(currentSection)\(currentIndex)")
+    //        let placeImg = UIImage(named: "bg1") placeholder: placeImg, // will come in setImage()
+            cell.wallpaperImg.kf.setImage(with: resource, placeholder: UIImage(named: "placeholder"), options: [.transition(.fade(0.2))])
+        }
+        
         return cell
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 2
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         debugPrint("Image at \(indexPath.item) in \(homeCollection.tag) section is tapped!")
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
+ 
     
+    
+    
+    
+//    func CacheImg() {
+//        let ImgRec = ImageResource(downloadURL: imgUrlArr[currentSection], cacheKey: "img\(currentSection)\(currentIndex)")
+//        cell.wallpaperImg.kf.setImage(with: )
+//    }
 }

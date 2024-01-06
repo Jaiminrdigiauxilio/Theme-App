@@ -11,10 +11,15 @@ class CollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var wallpaperImg: UIImageView!
     
+    
+    
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         wallpaperImg.image = nil
+        wallpaperImg.image = UIImage(named: "placeholder")
     }
     
+}
+protocol tapDelegate:AnyObject {
+    func didSelectItem(at Key: String)
 }

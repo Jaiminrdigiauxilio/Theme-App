@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ViewController: UIViewController {
+class GetStartedVC: UIViewController {
     @IBOutlet weak var bgImg: UIImageView!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var titleView: UIView!

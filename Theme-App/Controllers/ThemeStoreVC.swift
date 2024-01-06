@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ThemeStoreViewController: UIViewController {
+class ThemeStoreVC: UIViewController {
 
     @IBOutlet weak var bgImgView: UIImageView!
     @IBOutlet weak var homeTable: UITableView!
@@ -22,8 +22,14 @@ class ThemeStoreViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeTable.sectionHeaderTopPadding = 20
+        if #available(iOS 15.0, *) {
+            homeTable.sectionHeaderTopPadding = 20
+        } else {
+            // Fallback on earlier versions
+        }
         navigationItem.titleView?.tintColor = .white
+        
+        
     }
     
     func setBgFromUsrDefault() {
@@ -37,7 +43,11 @@ class ThemeStoreViewController: UIViewController {
 }
 
 //  MARK: - Table View code & Methods
-extension ThemeStoreViewController: UITableViewDataSource, UITableViewDelegate {
+extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate, tapDelegate {
+    func didSelectItem(at Key: String) {
+        self.performSegue(withIdentifier: "SelectedCells", sender:  self)
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

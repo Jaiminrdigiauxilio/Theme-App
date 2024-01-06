@@ -23,9 +23,6 @@ class K {
     static let imgUrl7 = "https://images.unsplash.com/photo-1575722290270-626b0208df99?q=80&w=2432&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     static let imgUrl8 = "https://admin.mobilewallet.cards//pass//other//default_themes//background.jpg?time=1693304922"
     
-    
-//https://png.pngtree.com/background/20220718/original/pngtree-lightweight-soft-light-fashion-simple-breathable-abstract-lines-aesthetic-background-picture-image_1654718.jpg
-    
     //  Cell Indentifiers
     static let tableCellIdentifier = "TableCell"
     static let collectionCellIdentifier = "CollectionCell"

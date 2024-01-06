@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AllThemesViewController: UIViewController {
+class AllThemesVC: UIViewController {
 
     @IBOutlet weak var bgImg: UIImageView!
     @IBOutlet weak var themeCollection: UICollectionView!
@@ -19,7 +19,6 @@ class AllThemesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
     func setBgFromUsrDefault() {
@@ -29,7 +28,7 @@ class AllThemesViewController: UIViewController {
 }
 
 
-extension AllThemesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension AllThemesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         10
