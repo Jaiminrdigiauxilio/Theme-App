@@ -20,6 +20,4 @@ class CollectionCell: UICollectionViewCell {
     }
     
 }
-protocol tapDelegate:AnyObject {
-    func didSelectItem(at Key: String)
-}
+
