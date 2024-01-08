@@ -19,6 +19,8 @@ class SeeAllThemesVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         
     }
 
@@ -44,7 +46,7 @@ extension SeeAllThemesVC: UICollectionViewDelegate, UICollectionViewDataSource, 
         cell.collectionImg.kf.indicatorType = .activity
         cell.collectionImg.layer.cornerRadius = 25
         cell.collectionImg.layer.masksToBounds = true
-        cell.collectionImg.kf.setImage(with: URL(string: K.imgUrl2), placeholder: UIImage(named: "placeholder"))
+        cell.collectionImg.kf.setImage(with: URL(string: K.imgUrl1), placeholder: UIImage(named: "placeholder"))
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

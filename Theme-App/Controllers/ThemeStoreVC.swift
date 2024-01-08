@@ -22,12 +22,14 @@ class ThemeStoreVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        navigationController?.navigationBar.isHidden = true
+        backBtn()
         if #available(iOS 15.0, *) {
             homeTable.sectionHeaderTopPadding = 20
         } else {
             // Fallback on earlier versions
         }
-        navigationItem.titleView?.tintColor = .white
         
         
     }
@@ -43,16 +45,36 @@ class ThemeStoreVC: UIViewController {
     }
     
     
+    func backBtn() {
+        var backBtn = UIButton()
+        backBtn.backgroundColor = .clear
+        backBtn.layer.borderColor =  UIColor.white.cgColor
+        backBtn.layer.cornerRadius = 25
+        backBtn.setTitle("BACK", for: .normal)
+        backBtn.translatesAutoresizingMaskIntoConstraints = false
+        //backBtn.constraints
+        NSLayoutConstraint.activate([
+            backBtn.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            backBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            backBtn.widthAnchor.constraint(equalToConstant: 60),
+            backBtn.heightAnchor.constraint(equalToConstant: 40),
+//            backBtn.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+//            backBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -12),
+//            backBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+//            backBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+        ])
+        view.addSubview(backBtn)
+    }
     
 
 }
 
 //  MARK: - Table View code & Methods
-extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate {
-    func didSelectItem(at Key: String) {
-        self.performSegue(withIdentifier: "SelectedCells", sender:  self)
+extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate, selectWallpaperDelegate {
+    func didSelectItemIndex(at index: IndexPath) {
+        self.performSegue(withIdentifier: K.tappedThemeSegue, sender: self)
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -73,7 +95,7 @@ extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate {
         return 8
     }
 
-    
+    //      Custom Header view with button
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80))
         headerView.backgroundColor = .clear
@@ -93,18 +115,12 @@ extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate {
         headerView.addSubview(seeAllBtn)
         
         NSLayoutConstraint.activate([
-//            headerView.widthAnchor.c
-//            title.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 5),
             title.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 12),
             title.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -10),
-//            title.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-//            title.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-            
-//            seeAllBtn.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 5),
+
             seeAllBtn.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -12),
             seeAllBtn.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -5),
-//            seeAllBtn.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-//            seeAllBtn.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+
         ])
         
         headerView.addSubview(title)
@@ -123,65 +139,6 @@ extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate {
         performSegue(withIdentifier: K.AllThemesSegue, sender: self)
 //        performSegue(withIdentifier: K.tappedThemeSegue, sender: self)
         
-
     }
 }
 
-
-
-
-
-
-//  MARK: - skeleton view code
-
-//    func addindShimmerEffect()  {
-//
-//        let label = UILabel()
-//        label.text = "Shimmer"
-//        label.font = UIFont.systemFont(ofSize: 25)
-//        label.frame = CGRect(x: 0, y: 100, width: view.frame.width, height: 100)
-//        label.textAlignment = .center
-//        view.addSubview(label)
-//
-//        let gradient = CAGradientLayer()
-//        gradient.startPoint = CGPoint(x: 0, y: 0.5)
-//        gradient.endPoint = CGPoint(x: 1, y: 0.5)
-//
-//        label.layer.addSublayer(gradient)
-//
-//        let animationGroup = makeAnimationGroup()
-//        animationGroup.beginTime = 0.0
-//        gradient.add(animationGroup, forKey: "backgroundColor")
-//
-//        gradient.frame = label.bounds
-//
-//        view.addSubview(label)
-//    }
-    
-
-//    func makeAnimationGroup(previousGroup: CAAnimationGroup? = nil) -> CAAnimationGroup {
-//        let animDuration: CFTimeInterval = 1.5
-//
-//        let anim1 = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.backgroundColor))
-//        anim1.fromValue = UIColor.lightGray
-//        anim1.toValue   = UIColor.darkGray
-//        anim1.duration  = animDuration
-//        anim1.beginTime = 0.0
-//
-//        let anim2 = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.backgroundColor))
-//        anim1.fromValue = UIColor.darkGray
-//        anim1.toValue   = UIColor.lightGray
-//        anim1.duration  = animDuration
-//        anim1.beginTime = anim1.beginTime + anim1.duration
-//
-//        let group = CAAnimationGroup()
-//        group.animations = [anim1, anim2]
-//        group.repeatCount = .greatestFiniteMagnitude
-//        group.duration = anim2.beginTime + anim2.duration
-//        group.isRemovedOnCompletion = false
-//
-//        if let previousGroup = previousGroup {
-//            group.beginTime = previousGroup.beginTime + 0.33
-//        }
-//        return group
-//    }

@@ -9,10 +9,12 @@ import UIKit
 import Kingfisher
 
 class TableCell: UITableViewCell{
+    
     @IBOutlet weak var homeCollection: UICollectionView!
     var currentIndex = 0
     var currentSection = 0
-    
+    var delegate: selectWallpaperDelegate?
+
     var imgUrlArr = [
         K.imgUrl1,
         K.imgUrl2,
@@ -51,18 +53,21 @@ class TableCell: UITableViewCell{
 }
 
 
-extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
+extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+    
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.collectionCellIdentifier, for: indexPath) as! CollectionCell
         
         currentIndex = indexPath.item
         currentSection = homeCollection.tag
+        
         
         cell.wallpaperImg.image = UIImage(named: "placeholder")
         cell.wallpaperImg.kf.indicatorType = .activity
@@ -113,6 +118,7 @@ extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         debugPrint("Image at \(indexPath.item) in \(homeCollection.tag) section is tapped!")
+        delegate?.didSelectItemIndex(at: indexPath)
 //        didSelectItem(at: "img\(indexPath.item)\(homeCollection.tag)")
         
     }
@@ -131,3 +137,5 @@ extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICol
 //        cell.wallpaperImg.kf.setImage(with: )
 //    }
 }
+
+//      #colorLiteral(red: 0.9999999404, green: 1, blue: 1, alpha: 1)
