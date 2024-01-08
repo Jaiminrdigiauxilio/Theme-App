@@ -90,7 +90,7 @@ extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICol
                     }
                     //  IF error occured
                 case .failure(let error):
-                    print("failed to retrice image form cache")
+                    print("failed to retrice image form cache\(error)")
                     
                 }
             }
@@ -114,6 +114,7 @@ extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         debugPrint("Image at \(indexPath.item) in \(homeCollection.tag) section is tapped!")
 //        didSelectItem(at: "img\(indexPath.item)\(homeCollection.tag)")
+        
     }
     
     

@@ -10,7 +10,7 @@ import Kingfisher
 
 class ThemeStoreVC: UIViewController {
 
-    @IBOutlet weak var bgImgView: UIImageView!
+    @IBOutlet weak var bgImg: UIImageView!
     @IBOutlet weak var homeTable: UITableView!
     
     var sectionTitles = ["Best Selling", "New Year", "Movies", "Traditional", "Trending", "Graphic", "Premium", "Free"]
@@ -33,8 +33,13 @@ class ThemeStoreVC: UIViewController {
     }
     
     func setBgFromUsrDefault() {
-        guard let url = URL(string: K.defaultBg) else { return }
-        bgImgView.kf.setImage(with: url)
+        // fetching stored url from userDefaults
+        let usrDefault = UserDefaults.standard
+        let rawUrl = usrDefault.string(forKey: "CurrentBg")!
+        guard let imgURL = URL(string: rawUrl) else { return }
+        //fetching image and displaying it using KingFisher dependency
+        bgImg.kf.setImage(with: imgURL)
+        
     }
     
     
@@ -43,7 +48,7 @@ class ThemeStoreVC: UIViewController {
 }
 
 //  MARK: - Table View code & Methods
-extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate, tapDelegate {
+extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate {
     func didSelectItem(at Key: String) {
         self.performSegue(withIdentifier: "SelectedCells", sender:  self)
     }
@@ -55,6 +60,7 @@ extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate, tapDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.tableCellIdentifier, for: indexPath) as! TableCell
+        
         cell.homeCollection.tag = indexPath.section
         return cell
     }

@@ -10,4 +10,5 @@ import UIKit
 class SeeAllCell: UICollectionViewCell {
     
     @IBOutlet weak var collectionImg: UIImageView!
+    
 }

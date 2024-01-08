@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AllThemesVC: UIViewController {
+class SeeAllThemesVC: UIViewController {
 
     @IBOutlet weak var bgImg: UIImageView!
     @IBOutlet weak var themeCollection: UICollectionView!
@@ -23,13 +23,17 @@ class AllThemesVC: UIViewController {
     }
 
     func setBgFromUsrDefault() {
-        guard let url = URL(string: K.defaultBg) else { return }
-        bgImg.kf.setImage(with: url)
+        // fetching stored url from userDefaults
+        let usrDefault = UserDefaults.standard
+        let rawUrl = usrDefault.string(forKey: "CurrentBg")!
+        guard let imgURL = URL(string: rawUrl) else { return }
+        //fetching image and displaying it using KingFisher dependency
+        bgImg.kf.setImage(with: imgURL)
     }
 }
 
 
-extension AllThemesVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SeeAllThemesVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 11

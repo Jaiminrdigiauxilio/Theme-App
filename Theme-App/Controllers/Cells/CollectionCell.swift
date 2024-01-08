@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol selectDelegate {
+    func didSelectItemIndex(at index: IndexPath)
+}
 class CollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var wallpaperImg: UIImageView!

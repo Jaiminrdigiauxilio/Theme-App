@@ -11,6 +11,3 @@ class SelectedCell: UICollectionViewCell {
     
     @IBOutlet weak var wallpaperImg: UIImageView!
 }
-protocol tapDelegate:AnyObject {
-    func didSelectItem(at Key: String)
-}
