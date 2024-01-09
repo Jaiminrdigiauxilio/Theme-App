@@ -20,6 +20,14 @@ class SelectedCell: UICollectionViewCell {
         wallpaperImg.layer.masksToBounds = true
         contentView.addSubview(wallpaperImg)
         
+        NSLayoutConstraint.activate([
+            wallpaperImg.topAnchor.constraint(equalTo: contentView.topAnchor),
+            wallpaperImg.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            wallpaperImg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            wallpaperImg.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+        ])
+        
     }
     
     required init?(coder: NSCoder) {

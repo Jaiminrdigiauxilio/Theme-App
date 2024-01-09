@@ -7,15 +7,10 @@
 
 import UIKit
 
-protocol selectWallpaperDelegate {
-    func didSelectItemIndex(at index: IndexPath)
-}
 
 class CollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var wallpaperImg: UIImageView!
-    
-    
     
     override func prepareForReuse() {
         super.prepareForReuse()

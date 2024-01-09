@@ -12,6 +12,8 @@ class SeeAllThemesVC: UIViewController {
     @IBOutlet weak var bgImg: UIImageView!
     @IBOutlet weak var themeCollection: UICollectionView!
     
+    var titleText = ""
+    var imgIndex = 0
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -20,9 +22,11 @@ class SeeAllThemesVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        customNavBar()
         
     }
+    
 
     func setBgFromUsrDefault() {
         // fetching stored url from userDefaults
@@ -32,6 +36,58 @@ class SeeAllThemesVC: UIViewController {
         //fetching image and displaying it using KingFisher dependency
         bgImg.kf.setImage(with: imgURL)
     }
+    
+    func customNavBar() {
+        
+        let customNavigationBar: UIView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+        view.addSubview(customNavigationBar)
+        
+        let backBtn = UIButton()
+        backBtn.backgroundColor = .clear
+        backBtn.layer.borderColor =  UIColor.white.cgColor
+        backBtn.layer.borderWidth = 1.5
+        backBtn.layer.cornerRadius = 10
+        backBtn.setTitle("Back", for: .normal)
+        backBtn.translatesAutoresizingMaskIntoConstraints = false
+        backBtn.addTarget(self, action: #selector(backBtnTapped(sender:)), for: .touchUpInside)
+        customNavigationBar.addSubview(backBtn)
+        
+        // Heading of screen
+        let titleLabel = UILabel()
+        titleLabel.text = "\(titleText) Themes"
+        titleLabel.font = UIFont(name: "System", size: 22)
+        titleLabel.textColor = .white
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        customNavigationBar.addSubview(titleLabel)
+        
+        //  All constraints
+        NSLayoutConstraint.activate([
+            customNavigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customNavigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            customNavigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            customNavigationBar.heightAnchor.constraint(equalToConstant: 44),
+            
+            titleLabel.centerXAnchor.constraint(equalTo: customNavigationBar.centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            
+            backBtn.leadingAnchor.constraint(equalTo: customNavigationBar.leadingAnchor, constant: 16),
+            backBtn.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            backBtn.widthAnchor.constraint(equalToConstant: 60),
+            backBtn.heightAnchor.constraint(equalToConstant: 20),
+        ])
+        
+    }
+    
+    
+    @objc func backBtnTapped(sender: UIButton)  {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 

@@ -8,12 +8,17 @@
 import UIKit
 import Kingfisher
 
+protocol selectedWallpaperDelegate {
+    func didSelectItemIndex(index: IndexPath)
+}
+
 class TableCell: UITableViewCell{
     
     @IBOutlet weak var homeCollection: UICollectionView!
     var currentIndex = 0
     var currentSection = 0
-    var delegate: selectWallpaperDelegate?
+    
+    var delegate: selectedWallpaperDelegate?
 
     var imgUrlArr = [
         K.imgUrl1,
@@ -24,17 +29,6 @@ class TableCell: UITableViewCell{
         K.imgUrl6,
         K.imgUrl7,
         K.imgUrl8,
-    ]
-    
-    var themeColor:[UIColor] = [
-        .red,
-        .blue,
-        .purple,
-        .black,
-        .brown,
-        .green,
-        .gray,
-        .cyan,
     ]
     
     override func awakeFromNib() {
@@ -72,11 +66,6 @@ extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICol
         cell.wallpaperImg.image = UIImage(named: "placeholder")
         cell.wallpaperImg.kf.indicatorType = .activity
         cell.wallpaperImg.layer.cornerRadius = 25
-        
-        // color background code
-//        cell.wallpaperImg.isHidden = true
-//        cell.contentView.backgroundColor = themeColor[homeCollection.tag]
-//        cell.contentView.layer.cornerRadius = 25
         
         //  kingfisher code
         let cache = ImageCache.default
@@ -118,7 +107,7 @@ extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         debugPrint("Image at \(indexPath.item) in \(homeCollection.tag) section is tapped!")
-        delegate?.didSelectItemIndex(at: indexPath)
+        delegate?.didSelectItemIndex(index: indexPath)
 //        didSelectItem(at: "img\(indexPath.item)\(homeCollection.tag)")
         
     }
@@ -137,5 +126,3 @@ extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICol
 //        cell.wallpaperImg.kf.setImage(with: )
 //    }
 }
-
-//      #colorLiteral(red: 0.9999999404, green: 1, blue: 1, alpha: 1)

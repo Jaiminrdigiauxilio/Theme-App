@@ -6,14 +6,25 @@
 //
 
 import UIKit
-import ScalingCarousel
-
 class SelectedThemeVC: UIViewController {
 
     @IBOutlet weak var bgImg: UIImageView!
     @IBOutlet weak var descpLabel: UILabel!
     @IBOutlet weak var applyThemeBtn: UIButton!
     var collection:UICollectionView!
+    
+    var selectedWallpaper = 0
+    
+    var imgUrlArr = [
+        K.imgUrl1,
+        K.imgUrl2,
+        K.imgUrl3,
+        K.imgUrl4,
+        K.imgUrl5,
+        K.imgUrl6,
+        K.imgUrl7,
+        K.imgUrl8,
+    ]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,7 +40,7 @@ class SelectedThemeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        customNavBar()
         setupCollectionView()
 //        applyThemeBtn.layer.cornerRadius = 30
         setDescp()
@@ -52,6 +63,53 @@ class SelectedThemeVC: UIViewController {
         //  fetching image and displaying it using KingFisher dependency
         bgImg.kf.setImage(with: imgURL)
     }
+    
+    func customNavBar() {
+        
+        let customNavigationBar: UIView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+        view.addSubview(customNavigationBar)
+        
+        let backBtn = UIButton()
+        backBtn.backgroundColor = .clear
+        backBtn.layer.borderColor =  UIColor.white.cgColor
+        backBtn.layer.borderWidth = 1.5
+        backBtn.layer.cornerRadius = 10
+        backBtn.setTitle("Back", for: .normal)
+        backBtn.translatesAutoresizingMaskIntoConstraints = false
+        backBtn.addTarget(self, action: #selector(backBtnTapped(sender:)), for: .touchUpInside)
+        customNavigationBar.addSubview(backBtn)
+        
+        // Heading of screen
+        let titleLabel = UILabel()
+        titleLabel.text="Theme Store"
+        titleLabel.font = UIFont(name: "System", size: 22)
+        titleLabel.textColor = .white
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        customNavigationBar.addSubview(titleLabel)
+        
+        //  All constraints
+        NSLayoutConstraint.activate([
+            customNavigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customNavigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            customNavigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            customNavigationBar.heightAnchor.constraint(equalToConstant: 44),
+            
+            titleLabel.centerXAnchor.constraint(equalTo: customNavigationBar.centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            
+            backBtn.leadingAnchor.constraint(equalTo: customNavigationBar.leadingAnchor, constant: 16),
+            backBtn.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            backBtn.widthAnchor.constraint(equalToConstant: 60),
+            backBtn.heightAnchor.constraint(equalToConstant: 20),
+        ])
+        
+    }
+    
     
     func setDescp() {
         descpLabel.text = K.wallpaperDescp
@@ -88,6 +146,12 @@ class SelectedThemeVC: UIViewController {
         
     }
     
+    
+    @objc func backBtnTapped(sender: UIButton)  {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
 }
 
 
@@ -102,8 +166,10 @@ extension SelectedThemeVC: UICollectionViewDelegate, UICollectionViewDataSource,
 
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectedCell", for: indexPath) as! SelectedCell
-        cell.wallpaperImg.image = UIImage(named: "placeholder")
+        cell.wallpaperImg.kf.indicatorType = .activity
+        cell.wallpaperImg.kf.setImage(with: URL(string: imgUrlArr[selectedWallpaper]), placeholder: UIImage(named: "placeholder"))
         cell.wallpaperImg.layer.cornerRadius = 25
+        cell.wallpaperImg.contentMode = .scaleAspectFill
         cell.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         return cell
     }

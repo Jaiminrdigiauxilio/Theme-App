@@ -85,12 +85,12 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FIk-YQ-Cy0">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
-                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="210" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qli-bh-leP">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="210" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qli-bh-leP">
+                                <rect key="frame" x="0.0" y="147" width="393" height="705"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCell" rowHeight="250" id="vwu-SS-2Ov" customClass="TableCell" customModule="Theme_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="250"/>
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="393" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vwu-SS-2Ov" id="y7V-xc-dXn">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="250"/>
@@ -181,12 +181,12 @@
                             <constraint firstItem="N0B-lD-oHY" firstAttribute="trailing" secondItem="Qli-bh-leP" secondAttribute="trailing" id="4rP-vF-3pe"/>
                             <constraint firstItem="sZa-bo-hHP" firstAttribute="top" secondItem="N0B-lD-oHY" secondAttribute="top" constant="654" id="6xj-nC-RyW"/>
                             <constraint firstItem="Qli-bh-leP" firstAttribute="leading" secondItem="N0B-lD-oHY" secondAttribute="leading" id="80c-aQ-1zj"/>
-                            <constraint firstItem="N0B-lD-oHY" firstAttribute="bottom" secondItem="Qli-bh-leP" secondAttribute="bottom" id="Emp-Fv-LGE"/>
+                            <constraint firstItem="N0B-lD-oHY" firstAttribute="bottom" secondItem="Qli-bh-leP" secondAttribute="bottom" constant="-34" id="Emp-Fv-LGE"/>
                             <constraint firstAttribute="bottom" secondItem="FIk-YQ-Cy0" secondAttribute="bottom" id="I7l-5b-Se4"/>
                             <constraint firstItem="FIk-YQ-Cy0" firstAttribute="top" secondItem="d9Y-GX-Ub0" secondAttribute="top" id="SJg-NQ-y54"/>
                             <constraint firstItem="N0B-lD-oHY" firstAttribute="trailing" secondItem="FIk-YQ-Cy0" secondAttribute="trailing" id="VcQ-iD-NR7"/>
-                            <constraint firstItem="sZa-bo-hHP" firstAttribute="bottom" secondItem="Qli-bh-leP" secondAttribute="bottom" id="fsg-cn-fcL"/>
-                            <constraint firstItem="Qli-bh-leP" firstAttribute="top" secondItem="N0B-lD-oHY" secondAttribute="top" id="phf-Q8-VHh"/>
+                            <constraint firstItem="sZa-bo-hHP" firstAttribute="bottom" secondItem="Qli-bh-leP" secondAttribute="bottom" constant="-34" id="fsg-cn-fcL"/>
+                            <constraint firstItem="Qli-bh-leP" firstAttribute="top" secondItem="N0B-lD-oHY" secondAttribute="top" constant="44" id="phf-Q8-VHh"/>
                             <constraint firstItem="sZa-bo-hHP" firstAttribute="leading" secondItem="Qli-bh-leP" secondAttribute="leading" id="rqv-ME-jjm"/>
                             <constraint firstItem="FIk-YQ-Cy0" firstAttribute="leading" secondItem="N0B-lD-oHY" secondAttribute="leading" id="rtj-tF-igb"/>
                         </constraints>
@@ -203,7 +203,7 @@
             </objects>
             <point key="canvasLocation" x="1970.2290076335878" y="3.5211267605633805"/>
         </scene>
-        <!--See All ThemesVC-->
+        <!--See-->
         <scene sceneID="zYs-y0-Pv2">
             <objects>
                 <viewController storyboardIdentifier="AllThemesViewController" id="8ma-nD-Rit" customClass="SeeAllThemesVC" customModule="Theme_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -215,7 +215,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vCd-3e-RBq">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="147" width="393" height="705"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iMO-rN-WhQ">
                                     <size key="itemSize" width="170" height="220"/>
@@ -256,9 +256,9 @@
                         <viewLayoutGuide key="safeArea" id="cd2-w8-0fU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vCd-3e-RBq" firstAttribute="top" secondItem="cd2-w8-0fU" secondAttribute="top" id="5af-mD-pKQ"/>
+                            <constraint firstItem="vCd-3e-RBq" firstAttribute="top" secondItem="cd2-w8-0fU" secondAttribute="top" constant="44" id="5af-mD-pKQ"/>
                             <constraint firstItem="cd2-w8-0fU" firstAttribute="trailing" secondItem="0wZ-ta-AEn" secondAttribute="trailing" id="AxQ-74-hCt"/>
-                            <constraint firstItem="cd2-w8-0fU" firstAttribute="bottom" secondItem="vCd-3e-RBq" secondAttribute="bottom" id="B2w-rG-w3l"/>
+                            <constraint firstItem="cd2-w8-0fU" firstAttribute="bottom" secondItem="vCd-3e-RBq" secondAttribute="bottom" constant="-34" id="B2w-rG-w3l"/>
                             <constraint firstItem="vCd-3e-RBq" firstAttribute="leading" secondItem="cd2-w8-0fU" secondAttribute="leading" id="ER2-Ie-t1R"/>
                             <constraint firstItem="cd2-w8-0fU" firstAttribute="trailing" secondItem="vCd-3e-RBq" secondAttribute="trailing" id="Joa-rT-nHa"/>
                             <constraint firstAttribute="bottom" secondItem="0wZ-ta-AEn" secondAttribute="bottom" id="LuN-Ih-Vbl"/>
@@ -266,7 +266,7 @@
                             <constraint firstItem="0wZ-ta-AEn" firstAttribute="leading" secondItem="cd2-w8-0fU" secondAttribute="leading" id="t6C-by-UKH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="U5j-Kp-Cgb"/>
+                    <navigationItem key="navigationItem" title="See" id="U5j-Kp-Cgb"/>
                     <connections>
                         <outlet property="bgImg" destination="0wZ-ta-AEn" id="5gr-iL-ZS3"/>
                         <outlet property="themeCollection" destination="vCd-3e-RBq" id="c8p-eH-3ws"/>
@@ -275,7 +275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Egk-HO-mlX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3373" y="4"/>
+            <point key="canvasLocation" x="3371.7557251908397" y="3.5211267605633805"/>
         </scene>
         <!--Selected ThemeVC-->
         <scene sceneID="aDe-gr-86O">
@@ -368,14 +368,14 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Xnm-3Z-7mP"/>
+        <segue reference="kdB-4U-ZPM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="BtnColor">
             <color red="0.83137255907058716" green="0.99607843160629272" blue="0.13333332538604736" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -8,13 +8,15 @@
 import UIKit
 import Kingfisher
 
-class ThemeStoreVC: UIViewController {
+class ThemeStoreVC: UIViewController, selectedWallpaperDelegate {
+    
 
     @IBOutlet weak var bgImg: UIImageView!
     @IBOutlet weak var homeTable: UITableView!
     
     var sectionTitles = ["Best Selling", "New Year", "Movies", "Traditional", "Trending", "Graphic", "Premium", "Free"]
-    
+    var currentSection = 0
+    var tappedWallpaper = 0
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setBgFromUsrDefault()
@@ -22,17 +24,18 @@ class ThemeStoreVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        
         navigationController?.navigationBar.isHidden = true
-        backBtn()
+        customNavBar()
+        
         if #available(iOS 15.0, *) {
             homeTable.sectionHeaderTopPadding = 20
         } else {
             // Fallback on earlier versions
         }
         
-        
     }
+    
     
     func setBgFromUsrDefault() {
         // fetching stored url from userDefaults
@@ -45,7 +48,16 @@ class ThemeStoreVC: UIViewController {
     }
     
     
-    func backBtn() {
+    func customNavBar() {
+        
+        let customNavigationBar: UIView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+        view.addSubview(customNavigationBar)
+        
         let backBtn = UIButton()
         backBtn.backgroundColor = .clear
         backBtn.layer.borderColor =  UIColor.white.cgColor
@@ -54,37 +66,71 @@ class ThemeStoreVC: UIViewController {
         backBtn.setTitle("Back", for: .normal)
         backBtn.translatesAutoresizingMaskIntoConstraints = false
         backBtn.addTarget(self, action: #selector(backBtnTapped(sender:)), for: .touchUpInside)
-        view.addSubview(backBtn)
+        customNavigationBar.addSubview(backBtn)
         
-//        let title = UILabel()
-//        title.text="Theme Store"
-//        title.font = UIFont(name: "System", size: 18)
-//        title.textColor = .white
-//        view.addSubview(title)
+        // Heading of screen
+        let titleLabel = UILabel()
+        titleLabel.text="Theme Store"
+        titleLabel.font = UIFont(name: "System", size: 22)
+        titleLabel.textColor = .white
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        customNavigationBar.addSubview(titleLabel)
         
-        //backBtn.constraints
+        //  All constraints
         NSLayoutConstraint.activate([
-            backBtn.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
-            backBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 38),
+            customNavigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customNavigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            customNavigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            customNavigationBar.heightAnchor.constraint(equalToConstant: 44),
+            
+            titleLabel.centerXAnchor.constraint(equalTo: customNavigationBar.centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            
+            backBtn.leadingAnchor.constraint(equalTo: customNavigationBar.leadingAnchor, constant: 16),
+            backBtn.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
             backBtn.widthAnchor.constraint(equalToConstant: 60),
             backBtn.heightAnchor.constraint(equalToConstant: 20),
-            
-//            title.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 38),
-//            title.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 100),
-//            title.widthAnchor.constraint(equalToConstant: 200),
-//            title.heightAnchor.constraint(equalToConstant: 40),
         ])
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == K.AllThemesSegue {
+            let destVC = segue.destination as! SeeAllThemesVC
+            destVC.titleText = sectionTitles[currentSection]
+            destVC.imgIndex = currentSection
+            
+        }
+        else if segue.identifier == K.tappedThemeSegue {
+            let destVC = segue.destination as! SelectedThemeVC
+            destVC.selectedWallpaper = tappedWallpaper
+            print(tappedWallpaper)
+        }
         
     }
     
-
+    func didSelectItemIndex(index: IndexPath) {
+        tappedWallpaper = index.item
+        performSegue(withIdentifier: K.tappedThemeSegue, sender: self)
+    }
+    
+    
+    @objc func seeAllTapped(sender: UIButton)  {
+        currentSection = sender.tag
+//        debugPrint("\(sectionTitles[currentSection]) see all tapped!")
+        performSegue(withIdentifier: K.AllThemesSegue, sender: self)
+    }
+    
+    @objc func backBtnTapped(sender: UIButton)  {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
 }
 
+
 //  MARK: - Table View code & Methods
-extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate, selectWallpaperDelegate {
-    func didSelectItemIndex(at index: IndexPath) {
-        self.performSegue(withIdentifier: K.tappedThemeSegue, sender: self)
-    }
+extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -92,7 +138,7 @@ extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate, selectWallpa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.tableCellIdentifier, for: indexPath) as! TableCell
-        
+        cell.delegate = self
         cell.homeCollection.tag = indexPath.section
         return cell
     }
@@ -130,6 +176,7 @@ extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate, selectWallpa
 
             seeAllBtn.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -12),
             seeAllBtn.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -5),
+            seeAllBtn.heightAnchor.constraint(equalToConstant: 20)
 
         ])
         
@@ -138,21 +185,11 @@ extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate, selectWallpa
         
         return headerView
     }
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = .clear
     }
     
     
-    @objc func seeAllTapped(sender: UIButton)  {
-        let currentSection = sender.tag
-        debugPrint("\(sectionTitles[currentSection]) see all tapped!")
-        performSegue(withIdentifier: K.AllThemesSegue, sender: self)
-//        performSegue(withIdentifier: K.tappedThemeSegue, sender: self)
-        
-    }
-    
-    @objc func backBtnTapped(sender: UIButton)  {
-        
-    }
 }
 
