@@ -46,25 +46,35 @@ class ThemeStoreVC: UIViewController {
     
     
     func backBtn() {
-        var backBtn = UIButton()
+        let backBtn = UIButton()
         backBtn.backgroundColor = .clear
         backBtn.layer.borderColor =  UIColor.white.cgColor
-        backBtn.layer.cornerRadius = 25
-        backBtn.setTitle("BACK", for: .normal)
+        backBtn.layer.borderWidth = 1.5
+        backBtn.layer.cornerRadius = 10
+        backBtn.setTitle("Back", for: .normal)
         backBtn.translatesAutoresizingMaskIntoConstraints = false
+        backBtn.addTarget(self, action: #selector(backBtnTapped(sender:)), for: .touchUpInside)
+        view.addSubview(backBtn)
+        
+//        let title = UILabel()
+//        title.text="Theme Store"
+//        title.font = UIFont(name: "System", size: 18)
+//        title.textColor = .white
+//        view.addSubview(title)
+        
         //backBtn.constraints
         NSLayoutConstraint.activate([
-            backBtn.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            backBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            backBtn.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            backBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 38),
             backBtn.widthAnchor.constraint(equalToConstant: 60),
-            backBtn.heightAnchor.constraint(equalToConstant: 40),
-//            backBtn.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-//            backBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -12),
-//            backBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-//            backBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            backBtn.heightAnchor.constraint(equalToConstant: 20),
             
+//            title.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 38),
+//            title.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 100),
+//            title.widthAnchor.constraint(equalToConstant: 200),
+//            title.heightAnchor.constraint(equalToConstant: 40),
         ])
-        view.addSubview(backBtn)
+        
     }
     
 
@@ -138,6 +148,10 @@ extension ThemeStoreVC: UITableViewDataSource, UITableViewDelegate, selectWallpa
         debugPrint("\(sectionTitles[currentSection]) see all tapped!")
         performSegue(withIdentifier: K.AllThemesSegue, sender: self)
 //        performSegue(withIdentifier: K.tappedThemeSegue, sender: self)
+        
+    }
+    
+    @objc func backBtnTapped(sender: UIButton)  {
         
     }
 }
