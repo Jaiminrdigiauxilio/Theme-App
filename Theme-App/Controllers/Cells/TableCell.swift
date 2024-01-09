@@ -92,7 +92,6 @@ extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICol
         } else {
             cell.wallpaperImg.kf.indicatorType = .activity
             let resource = KF.ImageResource(downloadURL: URL(string: imgUrlArr[homeCollection.tag])!, cacheKey: "img\(currentSection)\(currentIndex)")
-    //        let placeImg = UIImage(named: "bg1") placeholder: placeImg, // will come in setImage()
             cell.wallpaperImg.kf.setImage(with: resource, placeholder: UIImage(named: "placeholder"), options: [.transition(.fade(0.2))])
         }
         
@@ -108,7 +107,6 @@ extension TableCell: UICollectionViewDataSource, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         debugPrint("Image at \(indexPath.item) in \(homeCollection.tag) section is tapped!")
         delegate?.didSelectItemIndex(index: indexPath)
-//        didSelectItem(at: "img\(indexPath.item)\(homeCollection.tag)")
         
     }
     

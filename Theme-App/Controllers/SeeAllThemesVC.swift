@@ -82,6 +82,12 @@ class SeeAllThemesVC: UIViewController {
         ])
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.selectedThemeSegue {
+            let destVC = segue.destination as! SelectedThemeVC
+            destVC.selectedWallpaper = imgIndex
+        }
+    }
     
     
     @objc func backBtnTapped(sender: UIButton)  {
@@ -107,5 +113,9 @@ extension SeeAllThemesVC: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.size.width/2 - 18, height: 210)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        imgIndex = indexPath.section
+        performSegue(withIdentifier: K.selectedThemeSegue, sender: self)
     }
 }
